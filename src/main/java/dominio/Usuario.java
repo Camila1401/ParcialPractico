@@ -7,9 +7,12 @@ public class Usuario {
     private String nombreUsuario;
     private String nombre;
     private String dni;
+    private String mail;
     private List<Prestamo> prestamos;
     private Multa multa;
+    private NotificadorMail notificadorMail;
 
     public void notificar(Mensaje mensaje) {
+        notificadorMail.enviar(mail, mensaje.asunto, mensaje.cuerpo);
     }
 }
