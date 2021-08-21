@@ -10,6 +10,7 @@ public class Prestamo {
     private Usuario usuario;
     private final int dias;
     private Prestable prestable;
+    private Multa multa;
     private Timer timer; //dsp tengo q ver como funciona esto
 
     public Prestamo(Date fechaDePrestamo, List<Observer> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo){
