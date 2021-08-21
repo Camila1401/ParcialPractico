@@ -8,7 +8,11 @@ public class Paquete extends Prestable{
 
     @Override
     public int cantidadDias() {
-        return 3; //esto esta mal, habria q recorrer la lista e ir sumando y dsp sumarle 3
+        int total = 3;
+        for (Prestable prestable : prestables) {
+            total += prestable.cantidadDias();
+        }
+        return total; //horrible pero no me salia de otra forma u.u
     }
 
     @Override

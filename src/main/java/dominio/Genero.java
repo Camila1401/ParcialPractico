@@ -1,5 +1,5 @@
 package dominio;
 
 public enum Genero {
-    POLICIAL, PARANINIOS, CIENTIFICO, MANGA, ROMANTICO
+    POLICIAL, PARANINIOS, CIENTIFICO, MANGA
 }

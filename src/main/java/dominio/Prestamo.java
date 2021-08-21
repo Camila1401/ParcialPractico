@@ -55,5 +55,8 @@ public class Prestamo {
         observadores.forEach(observer -> observer.notificarAvisoAnticipado(usuario, prestable));
     }
 
+    public Prestable prestable(){
+        return prestable;
+    }
 }
 
