@@ -6,14 +6,21 @@ public class ControladorPrestamos {
     private List<Prestamo> prestamos;
 
     public Prestamo crearPrestamo(List<Observer> observadores, Usuario usuario, Prestable prestable){
-        return new Prestamo(observadores, usuario, prestable);
+        return new Prestamo(observadores, usuario, prestable, this);
     }
 
     public void devolverPrestamo(Prestamo prestamo){
-        prestamos.remove(prestamo);
         prestamo.prestable().modificarEstado(new EnBiblioteca());
-        //habria q guardar la multa en algun lado
+        if(prestamo.hayMulta()){
+            prestamo.devueltoConMulta();
+        } else {
+            eliminarPrestamo(prestamo);
+        }
     }
 
+    public void eliminarPrestamo(Prestamo prestamo){
+        prestamos.remove(prestamo);
+        prestamo.usuario().eliminarPrestamo(prestamo);
+    }
 
 }

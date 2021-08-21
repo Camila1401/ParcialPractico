@@ -10,8 +10,21 @@ public class Usuario {
     private String mail;
     private List<Prestamo> prestamos;
     private NotificadorMail notificadorMail;
+    private CalculadorMulta calculadorMulta;
 
     public void notificar(Mensaje mensaje) {
         notificadorMail.enviar(mail, mensaje.asunto, mensaje.cuerpo);
+    }
+
+    public int multa(){
+        return calculadorMulta.calcularMulta(prestamos);
+    }
+
+    public void agregarPrestamo(Prestamo prestamo){
+        prestamos.add(prestamo);
+    }
+
+    public void eliminarPrestamo(Prestamo prestamo) {
+        prestamos.remove(prestamo);
     }
 }
