@@ -12,8 +12,8 @@ public class Prestamo {
     private int diasPrestado;
     private final Prestable prestable;
     private int multa;
-    private Timer timer;
-    private TimerPrestamo tareaTimer;
+    private final Timer timer;
+    private final TimerPrestamo tareaTimer;
     private final ControladorPrestamos controladorPrestamos;
 
     public Prestamo(List<Observer> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador){
@@ -27,7 +27,7 @@ public class Prestamo {
         timer = new Timer();
         tareaTimer = new TimerPrestamo();
 
-        timer.schedule(tareaTimer.tarea(), fecha, 86400000); //eso es un dia en milisegundos
+        timer.schedule(tareaTimer.prestamoCorriendo(), fecha, 86400000); //eso es un dia en milisegundos
         controladorPrestamos = controlador;
     }
 
@@ -71,8 +71,18 @@ public class Prestamo {
         return multa != 0;
     }
 
+    public void restarDiaMulta(){
+        multa -= 1;
+    }
+
+    public Timer timer() {
+        return timer;
+    }
+
     public void devueltoConMulta() {
-        //implementar el timer yendo al reves para sacar la multa
+        timer.cancel();
+        timer.purge();
+        timer.schedule(tareaTimer.prestamoDevuelto(), new Date(), 86400000);
     }
 }
 

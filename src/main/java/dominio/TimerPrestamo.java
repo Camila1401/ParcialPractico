@@ -5,10 +5,12 @@ import java.util.TimerTask;
 public class TimerPrestamo {
 
     private Prestamo prestamo;
-    private TimerTask tarea;
+    private TimerTask prestamoCorriendo;
+    private TimerTask prestamoDevuelto;
+    private ControladorPrestamos controladorPrestamos;
 
     TimerPrestamo(){
-        tarea = new TimerTask(){
+        prestamoCorriendo = new TimerTask(){
 
             @Override
             public void run() {
@@ -24,9 +26,25 @@ public class TimerPrestamo {
                 }
             }
         };
+
+        prestamoDevuelto = new TimerTask() {
+            @Override
+            public void run() {
+                if(prestamo.multa() != 0){
+                    prestamo.restarDiaMulta();
+                } else {
+                    controladorPrestamos.eliminarPrestamo(prestamo);
+                    prestamo.timer().cancel();
+                }
+            }
+        };
     }
 
-    public TimerTask tarea() {
-        return tarea;
+    public TimerTask prestamoCorriendo() {
+        return prestamoCorriendo;
+    }
+
+    public TimerTask prestamoDevuelto() {
+        return prestamoDevuelto;
     }
 }
