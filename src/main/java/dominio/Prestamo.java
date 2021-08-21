@@ -3,7 +3,6 @@ package dominio;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class Prestamo {
     private Date fecha; //dsp vemos si queda date
@@ -13,7 +12,8 @@ public class Prestamo {
     private int diasPrestado;
     private Prestable prestable;
     private Multa multa;
-    private Timer timer; //dsp tengo q ver como funciona esto
+    private Timer timer;
+    private TimerPrestamo tareaTimer;
 
     public Prestamo(List<Observer> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo){
         fecha = new Date();
@@ -24,27 +24,10 @@ public class Prestamo {
         diasPrestado = 0;
         multa = new Multa();
         timer = new Timer();
+        tareaTimer = new TimerPrestamo();
 
-        TimerTask tarea = new TimerTask(){
-
-            @Override
-            public void run() {
-                diasPrestado += 1;
-                if(diasPrestado < dias){
-                    if(dias - diasPrestado == 3){
-                        notificarAvisoAnticipado();
-                    }
-                } else if(diasPrestado == dias){
-                    notificarTiempoAgotado();
-                } else {
-                    multa.agregarDia();
-                }
-            }
-        };
-
-        timer.schedule(tarea, fecha, 86400000); //eso es un dia en milisegundos
+        timer.schedule(tareaTimer.tarea(), fecha, 86400000); //eso es un dia en milisegundos
     }
-
 
     public void notificarTiempoAgotado(){
         //algo del timer aca o en otro lado q llame a notificar
@@ -58,5 +41,23 @@ public class Prestamo {
     public Prestable prestable(){
         return prestable;
     }
+
+    public void agregarDiaMulta() {
+        multa.agregarDia();
+    }
+
+    public int dias() {
+        return dias;
+    }
+
+    public int diasPrestado() {
+        return diasPrestado;
+    }
+
+    public void sumarDiaPrestado(){
+        diasPrestado += 1;
+    }
+
 }
+
 
