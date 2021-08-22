@@ -13,11 +13,10 @@ public class Prestamo {
     private final Prestable prestable;
     private int multa;
     private final Timer timer;
-    private final TimerPrestamo tareaTimer;
+    private final TipoPrestamo tipoPrestamo;
     private final ControladorPrestamos controladorPrestamos;
-    private final boolean premium;
 
-    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador, boolean booleano){
+    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador, TipoPrestamo tipo){
         fecha = new Date();
         observadores = observadoresPrestamo;
         usuario = usuarioPrestamo;
@@ -26,10 +25,9 @@ public class Prestamo {
         diasPrestado = 0;
         multa = 0;
         timer = new Timer();
-        tareaTimer = new TimerPrestamo();
-        premium = booleano;
+        tipoPrestamo = tipo;
 
-        timer.schedule(tareaTimer.prestamoCorriendo(), fecha, 86400000); //eso es un dia en milisegundos
+        timer.schedule(tipoPrestamo.prestamoCorriendo(), fecha, 86400000); //eso es un dia en milisegundos
         controladorPrestamos = controlador;
     }
 
@@ -45,8 +43,8 @@ public class Prestamo {
         return prestable;
     }
 
-    public void agregarDiaMulta() {
-        multa += 5;
+    public void agregarDiaMulta(int cantidad) {
+        multa += cantidad;
     }
 
     public int dias() {
@@ -73,8 +71,8 @@ public class Prestamo {
         return multa != 0;
     }
 
-    public void restarDiaMulta(){
-        multa -= 1;
+    public void restarDiaMulta(int cantidad){
+        multa -= cantidad;
     }
 
     public Timer timer() {
@@ -84,7 +82,7 @@ public class Prestamo {
     public void devueltoConMulta() {
         timer.cancel();
         timer.purge();
-        timer.schedule(tareaTimer.prestamoDevuelto(), new Date(), 86400000);
+        timer.schedule(tipoPrestamo.prestamoDevuelto(), new Date(), 86400000);
     }
 }
 

@@ -2,8 +2,7 @@ package dominio;
 
 import java.util.TimerTask;
 
-public class Basico extends TipoPrestamo {
-
+public class Premium extends TipoPrestamo{
     @Override
     public TimerTask prestamoCorriendo() {
         return new TimerTask(){
@@ -18,7 +17,7 @@ public class Basico extends TipoPrestamo {
                 } else if(prestamo().diasPrestado() == prestamo().dias()){
                     prestamo().notificarTiempoAgotado();
                 } else {
-                    prestamo().agregarDiaMulta(5);
+                    prestamo().agregarDiaMulta(4);
                 }
             }
         };
@@ -30,7 +29,7 @@ public class Basico extends TipoPrestamo {
             @Override
             public void run() {
                 if(prestamo().multa() != 0){
-                    prestamo().restarDiaMulta(1);
+                    prestamo().restarDiaMulta(2);
                 } else {
                     controladorPrestamos().eliminarPrestamo(prestamo());
                     prestamo().timer().cancel();
@@ -39,4 +38,3 @@ public class Basico extends TipoPrestamo {
         };
     }
 }
-
