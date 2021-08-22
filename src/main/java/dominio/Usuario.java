@@ -13,7 +13,8 @@ public class Usuario {
     private CalculadorMulta calculadorMulta;
 
     public void notificar(Mensaje mensaje) {
-        notificadorMail.enviar(mail, mensaje.asunto, mensaje.cuerpo);
+        //notificadorMail.enviar(mail, mensaje.asunto, mensaje.cuerpo);
+
     }
 
     public int multa(){
