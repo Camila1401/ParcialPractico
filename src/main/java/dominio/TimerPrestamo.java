@@ -47,4 +47,8 @@ public class TimerPrestamo {
     public TimerTask prestamoDevuelto() {
         return prestamoDevuelto;
     }
+
+    public Prestamo prestamo() {
+        return prestamo;
+    }
 }
