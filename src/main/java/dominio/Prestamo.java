@@ -15,8 +15,9 @@ public class Prestamo {
     private final Timer timer;
     private final TimerPrestamo tareaTimer;
     private final ControladorPrestamos controladorPrestamos;
+    private final boolean premium;
 
-    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador){
+    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador, boolean booleano){
         fecha = new Date();
         observadores = observadoresPrestamo;
         usuario = usuarioPrestamo;
@@ -26,6 +27,7 @@ public class Prestamo {
         multa = 0;
         timer = new Timer();
         tareaTimer = new TimerPrestamo();
+        premium = booleano;
 
         timer.schedule(tareaTimer.prestamoCorriendo(), fecha, 86400000); //eso es un dia en milisegundos
         controladorPrestamos = controlador;
