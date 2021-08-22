@@ -6,7 +6,7 @@ import java.util.Timer;
 
 public class Prestamo {
     private final Date fecha; //dsp vemos si queda date
-    private final List<Observer> observadores;
+    private final List<Observador> observadores;
     private final Usuario usuario;
     private final int dias;
     private int diasPrestado;
@@ -16,7 +16,7 @@ public class Prestamo {
     private final TimerPrestamo tareaTimer;
     private final ControladorPrestamos controladorPrestamos;
 
-    public Prestamo(List<Observer> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador){
+    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador){
         fecha = new Date();
         observadores = observadoresPrestamo;
         usuario = usuarioPrestamo;
@@ -32,11 +32,11 @@ public class Prestamo {
     }
 
     public void notificarTiempoAgotado(){
-        observadores.forEach(observer -> observer.notificarTiempoAgotado(usuario, prestable));
+        observadores.forEach(observador -> observador.notificarTiempoAgotado(usuario, prestable));
     }
 
     public void notificarAvisoAnticipado(){
-        observadores.forEach(observer -> observer.notificarAvisoAnticipado(usuario, prestable));
+        observadores.forEach(observador -> observador.notificarAvisoAnticipado(usuario, prestable));
     }
 
     public Prestable prestable(){

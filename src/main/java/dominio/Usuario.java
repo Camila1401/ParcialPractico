@@ -28,4 +28,8 @@ public class Usuario {
     public void eliminarPrestamo(Prestamo prestamo) {
         prestamos.remove(prestamo);
     }
+
+    public boolean tieneMulta() {
+        return calculadorMulta.calcularMulta(prestamos) == 0;
+    }
 }

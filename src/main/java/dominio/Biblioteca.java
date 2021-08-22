@@ -6,6 +6,7 @@ public class Biblioteca {
     private List<Usuario> usuarios;
     private List<Copia> copias;
 
-    private Biblioteca(){}
-    //falta ver como se hacia lo del getinstance
+    public List<Copia> copiasDisponibles() {
+        return (List<Copia>) copias.stream().filter(Copia::puedePrestarse);
+    }
 }

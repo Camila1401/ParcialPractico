@@ -1,6 +1,6 @@
 package dominio;
 
-public class Notificador implements Observer{
+public class Notificador implements Observador {
     @Override
     public void notificarTiempoAgotado(Usuario usuario, Prestable prestable) {
         usuario.notificar(new MensajeTiempoAgotado());
