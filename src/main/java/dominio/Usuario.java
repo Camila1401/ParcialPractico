@@ -30,6 +30,6 @@ public class Usuario {
     }
 
     public boolean tieneMulta() {
-        return calculadorMulta.calcularMulta(prestamos) == 0;
+        return calculadorMulta.calcularMulta(prestamos) != 0;
     }
 }
