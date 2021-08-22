@@ -13,4 +13,13 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+         <dependency>
+             <groupId>com.sendgrid</groupId>
+              <artifactId>sendgrid-java</artifactId>
+             <version>4.0.1</version>
+         </dependency>
+         </dependencies>
+
 </project>
+
