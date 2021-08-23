@@ -13,11 +13,11 @@ public class ControladorPrestamos {
             //exepcion si tiene multa
         } else {
             //Prestable prestable = controladorPrestables.generarPrestable(copias);
+
             List<Observador> observadores = new ArrayList<>();
             observadores.add(new Notificador());
             observadores.add(new ModificadorEstado());
 
-            //todo: aca usar polimorfismo
             Prestamo prestamo = new Prestamo(observadores, usuario, prestable, this);
 
             if(usuario.esUsuarioPremium()){

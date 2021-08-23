@@ -14,9 +14,8 @@ public class Usuario {
     private final CalculadorMulta calculadorMulta;
     private boolean premium;
 
-    Usuario(String nombreUsuario_,String nombre_,String dni_, String mail_, CalculadorMulta calculador, boolean premium_){
+    Usuario(String nombreUsuario_,String dni_, String mail_, CalculadorMulta calculador, boolean premium_){
         nombreUsuario = nombreUsuario_;
-        nombre = nombre_;
         dni = dni_;
         mail = mail_;
         prestamos = new ArrayList<>();
