@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Timer;
 
 public class Prestamo {
-    private final Date fecha; //dsp vemos si queda date
     private final List<Observador> observadores;
     private final Usuario usuario;
     private final int dias;
@@ -17,7 +16,6 @@ public class Prestamo {
     private final ControladorPrestamos controladorPrestamos;
 
     public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador, TipoPrestamo tipo){
-        fecha = new Date();
         observadores = observadoresPrestamo;
         usuario = usuarioPrestamo;
         prestable = prestablePrestamo;
@@ -27,7 +25,7 @@ public class Prestamo {
         timer = new Timer();
         tipoPrestamo = tipo;
 
-        timer.schedule(tipoPrestamo.prestamoCorriendo(), fecha, 86400000); //eso es un dia en milisegundos
+        timer.schedule(tipoPrestamo.prestamoCorriendo(), new Date(), 86400000); //eso es un dia en milisegundos
         controladorPrestamos = controlador;
     }
 

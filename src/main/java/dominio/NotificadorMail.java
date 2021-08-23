@@ -2,7 +2,11 @@ package dominio;
 // using SendGrid's Java Library
 // https://github.com/sendgrid/sendgrid-java
 import com.sendgrid.*;
+import sun.util.calendar.BaseCalendar;
+
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class NotificadorMail {
     public static void main(String[] args) throws IOException {
@@ -14,6 +18,7 @@ public class NotificadorMail {
 
         SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
+        /*
         try {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
@@ -25,5 +30,7 @@ public class NotificadorMail {
         } catch (IOException ex) {
             throw ex;
         }
+        */
+
     }
 }

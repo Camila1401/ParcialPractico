@@ -1,5 +1,8 @@
 package dominio;
 
+import org.mockito.cglib.core.Local;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class Usuario {
@@ -11,10 +14,10 @@ public class Usuario {
     private List<Prestamo> prestamos;
     //private NotificadorMail notificadorMail;
     private CalculadorMulta calculadorMulta;
+    private LocalDate fechaCreacion;
 
     public void notificar(Mensaje mensaje) {
         //notificadorMail.enviar(mail, mensaje.asunto, mensaje.cuerpo);
-
     }
 
     public int multa(){
@@ -31,5 +34,11 @@ public class Usuario {
 
     public boolean tieneMulta() {
         return calculadorMulta.calcularMulta(prestamos) != 0;
+    }
+
+    //esto capaz no lo usemos pero lo dejo por las dudas
+    public int aniosDesdeCreacion(){
+        LocalDate fecha = LocalDate.now();
+        return fecha.getYear() - fechaCreacion.getYear();
     }
 }
