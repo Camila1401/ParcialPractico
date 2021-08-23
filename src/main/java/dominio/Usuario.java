@@ -9,7 +9,7 @@ public class Usuario {
     private String dni;
     private String mail;
     private List<Prestamo> prestamos;
-    private NotificadorMail notificadorMail;
+    //private NotificadorMail notificadorMail;
     private CalculadorMulta calculadorMulta;
 
     public void notificar(Mensaje mensaje) {
