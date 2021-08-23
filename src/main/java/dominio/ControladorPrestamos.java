@@ -7,23 +7,27 @@ public class ControladorPrestamos {
     private List<Prestamo> prestamos;
     private ControladorPrestables controladorPrestables;
 
-    public Prestamo crearPrestamo(Usuario usuario, List<Copia> copias) {
+    public Prestamo crearPrestamo(Usuario usuario, Prestable prestable){//List<Copia> copias) {
         if (usuario.tieneMulta()) {
             return null;
             //exepcion si tiene multa
         } else {
-            Prestable prestable = controladorPrestables.generarPrestable(copias);
+            //Prestable prestable = controladorPrestables.generarPrestable(copias);
             List<Observador> observadores = new ArrayList<>();
             observadores.add(new Notificador());
             observadores.add(new ModificadorEstado());
 
-            Prestamo prestamo;
-            if(usuario.esUsuarioPremium()){         //esto tmb me da duda si hacerlo acá adentro aaaaaaaaaaaaaaaaaaaaa
-                prestamo = new Prestamo(observadores, usuario, prestable, this, new Premium());
+            //todo: aca usar polimorfismo
+            Prestamo prestamo = new Prestamo(observadores, usuario, prestable, this);
+
+            if(usuario.esUsuarioPremium()){
+                prestamo.elegirTipo(new Premium(prestamo));
             } else {
-                prestamo = new Prestamo(observadores, usuario, prestable, this, new Basico());
+                prestamo.elegirTipo(new Basico(prestamo));
             }
-            usuario.agregarPrestamo(prestamo);      //esto me da un poco de duda si corresponde que se haga aca adentro...
+
+            prestamo.arrancarTimer();
+            usuario.agregarPrestamo(prestamo);
             return prestamo;
         }
     }

@@ -1,5 +1,6 @@
 package dominio;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -12,10 +13,9 @@ public class Prestamo {
     private final Prestable prestable;
     private int multa;
     private final Timer timer;
-    private final TipoPrestamo tipoPrestamo;
-    private final ControladorPrestamos controladorPrestamos;
+    private TipoPrestamo tipoPrestamo;
 
-    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador, TipoPrestamo tipo){
+    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador){
         observadores = observadoresPrestamo;
         usuario = usuarioPrestamo;
         prestable = prestablePrestamo;
@@ -23,18 +23,35 @@ public class Prestamo {
         diasPrestado = 0;
         multa = 0;
         timer = new Timer();
-        tipoPrestamo = tipo;
 
-        timer.schedule(tipoPrestamo.prestamoCorriendo(), new Date(), 86400000); //eso es un dia en milisegundos
-        controladorPrestamos = controlador;
+    }
+
+    public void elegirTipo(TipoPrestamo tipo){
+        tipoPrestamo = tipo;
+    }
+
+    public void arrancarTimer(){
+        timer.schedule(tipoPrestamo.prestamoCorriendo(), new Date(), 1000);
     }
 
     public void notificarTiempoAgotado(){
-        observadores.forEach(observador -> observador.notificarTiempoAgotado(usuario, prestable));
+        observadores.forEach(observador -> {
+            try {
+                observador.notificarTiempoAgotado(usuario, prestable);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void notificarAvisoAnticipado(){
-        observadores.forEach(observador -> observador.notificarAvisoAnticipado(usuario, prestable));
+        observadores.forEach(observador -> {
+            try {
+                observador.notificarAvisoAnticipado(usuario, prestable);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public Prestable prestable(){
