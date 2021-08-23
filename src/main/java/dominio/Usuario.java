@@ -3,18 +3,30 @@ package dominio;
 import org.mockito.cglib.core.Local;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
     private int id;
-    private String nombreUsuario;
-    private String nombre;
-    private String dni;
+    private final String nombreUsuario;
+    private final String nombre;
+    private final String dni;
     private String mail;
-    private List<Prestamo> prestamos;
+    private final List<Prestamo> prestamos;
     //private NotificadorMail notificadorMail;
-    private CalculadorMulta calculadorMulta;
-    private LocalDate fechaCreacion;
+    private final CalculadorMulta calculadorMulta;
+    private boolean premium;
+
+    Usuario(String nombreUsuario_,String nombre_,String dni_, String mail_, CalculadorMulta calculador, boolean premium_){
+        id = 5; //habria q ver como generar un id? ? ? o lo saco dsp
+        nombreUsuario = nombreUsuario_;
+        nombre = nombre_;
+        dni = dni_;
+        mail = mail_;
+        prestamos = new ArrayList<>();
+        calculadorMulta = calculador;
+        premium = premium_;
+    }
 
     public void notificar(Mensaje mensaje) {
         //notificadorMail.enviar(mail, mensaje.asunto, mensaje.cuerpo);
@@ -36,9 +48,7 @@ public class Usuario {
         return calculadorMulta.calcularMulta(prestamos) != 0;
     }
 
-    //esto capaz no lo usemos pero lo dejo por las dudas
-    public int aniosDesdeCreacion(){
-        LocalDate fecha = LocalDate.now();
-        return fecha.getYear() - fechaCreacion.getYear();
+    public boolean esUsuarioPremium(){
+        return premium;
     }
 }
