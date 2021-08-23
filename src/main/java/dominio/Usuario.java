@@ -47,4 +47,8 @@ public class Usuario {
     public boolean esUsuarioPremium(){
         return premium;
     }
+
+    public String nombreUsuario() {
+        return nombreUsuario;
+    }
 }

@@ -1,6 +1,9 @@
 package dominio;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static dominio.Genero.todos;
 
 public class ControladorPrestables {
 
@@ -9,15 +12,26 @@ public class ControladorPrestables {
             return new PrestableSimple(copias.get(0));
         } else {
             Paquete paqueteGeneral = new Paquete();
+            List<Genero> generos = todos();
 
-            //aca falta filtrar la lista con los generos q se repiten
-            List<Copia> listaFiltrada = new ArrayList<>();
-
-            if(listaFiltrada.size() == 0){
-                copias.forEach(copia -> paqueteGeneral.agregarPrestable(new PrestableSimple(copia)));
-            } else {
-                //aca faltaria ver el tema de crear paquetes por genero, meterle los prestables y ver cuales copias sobran
-            }
+            generos.forEach(genero -> {
+                List<Copia> sublista = copias.stream()
+                        .filter(copia -> copia.matchearGenero(genero))
+                        .collect(Collectors.toList());
+                if(sublista.size() == 0){ } else {
+                    if(sublista.size() == 1){
+                        PrestableSimple prestableSimple = new PrestableSimple(sublista.get(0));
+                        paqueteGeneral.agregarPrestable(prestableSimple);
+                    } else {
+                        Paquete paqueteGenero = new Paquete();
+                        sublista.forEach(copia -> {
+                        PrestableSimple prestableSimple = new PrestableSimple(copia);
+                        paqueteGenero.agregarPrestable(prestableSimple);
+                        });
+                        paqueteGeneral.agregarPrestable(paqueteGenero);
+                    }
+                }
+            });
             return paqueteGeneral;
         }
     }

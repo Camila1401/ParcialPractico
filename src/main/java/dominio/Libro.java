@@ -1,7 +1,6 @@
 package dominio;
 
 public class Libro {
-    private String autor;
     private String titulo;
     private Genero genero;
 
@@ -9,7 +8,19 @@ public class Libro {
         return genero;
     }
 
-    public String autor() {
-        return autor;
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String titulo() {
+        return titulo;
+    }
+
+    public boolean matchearGenero(Genero otroGenero){
+        return genero.equals(otroGenero);
     }
 }

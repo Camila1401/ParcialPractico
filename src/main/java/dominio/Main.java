@@ -12,14 +12,16 @@ public class Main {
                         new CalculadorMulta(),
                         true);
 
-        Copia harryPotter1 = new Copia(5);
-        Copia harryPotter2 = new Copia(5);
-        Copia harryPotter3 = new Copia(5);
+        Copia harryPotter1 = new Copia(5, "Harry Potter 1", Genero.FANTASIA);
+        Copia harryPotter2 = new Copia(5, "Harry Potter 2", Genero.FANTASIA);
+        Copia harryPotter3 = new Copia(5, "Harry Potter 3", Genero.FANTASIA);
+        Copia naruto = new Copia(5, "Naruto - Arco Pain", Genero.MANGA);
 
         List<Copia> copias = new ArrayList<>();
-        copias.add(new Copia(1));
-        copias.add(new Copia(2));
-        copias.add(new Copia(3));
+        copias.add(harryPotter1);
+        copias.add(harryPotter2);
+        copias.add(harryPotter3);
+        copias.add(naruto);
 
         ControladorPrestables controladorPrestables = new ControladorPrestables();
         controladorPrestables.generarPrestable(copias);

@@ -5,9 +5,11 @@ public class Copia extends Libro {
     private Estado estado;
     private int diasPrestables;
 
-    Copia(int dias){
+    Copia(int dias, String titulo, Genero genero){
         diasPrestables = dias;
         estado = new EnBiblioteca();
+        setGenero(genero);
+        setTitulo(titulo);
     }
 
     public Boolean puedePrestarse(){
