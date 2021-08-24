@@ -41,6 +41,10 @@ public class Usuario {
         notificadorMail.enviar(mensaje.asunto, mail, mensaje.cuerpo);
     }
 
+    public String mail(){
+        return mail;
+    }
+
     public int multa(){
         return calculadorMulta.calcularMulta(prestamos);
     }

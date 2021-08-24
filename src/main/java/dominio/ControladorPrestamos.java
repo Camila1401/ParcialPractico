@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControladorPrestamos {
-    private List<Prestamo> prestamos;
     private ControladorPrestables controladorPrestables;
 
-    public Prestamo crearPrestamo(Usuario usuario, Prestable prestable){//List<Copia> copias) {
+    ControladorPrestamos(ControladorPrestables controladorPrestables_){
+        controladorPrestables = controladorPrestables_;
+    }
+
+    public Prestamo crearPrestamo(Usuario usuario, List<Copia> copias) {
         if (usuario.tieneMulta()) {
-            return null;
-            //exepcion si tiene multa
+            throw new UsuarioConMultaException();
         } else {
-            //Prestable prestable = controladorPrestables.generarPrestable(copias);
+            Prestable prestable = controladorPrestables.generarPrestable(copias);
 
             List<Observador> observadores = new ArrayList<>();
             observadores.add(new Notificador());
@@ -42,7 +44,6 @@ public class ControladorPrestamos {
     }
 
     public void eliminarPrestamo(Prestamo prestamo){
-        prestamos.remove(prestamo);
         prestamo.usuario().eliminarPrestamo(prestamo);
     }
 

@@ -10,7 +10,7 @@ public class UsuarioDAO {
         Connection conn = null;
         try {
             String connectionUrl = "jdbc:mysql://localhost:3306/scoobydoo";
-            conn = DriverManager.getConnection(connectionUrl, "root", "camila");
+            conn = DriverManager.getConnection(connectionUrl, "root", "root");
 
             // Do something with the Connection
             System.out.println("Conexión realizada");
@@ -28,7 +28,7 @@ public class UsuarioDAO {
     }
 
     public int insert(String nombreUsuario, int dni, String mail, boolean premium) {
-        String consulta = "INSERT INTO usuario (nombreUsuario, dni, mail, premium) VALUES ('" + nombreUsuario + "'," + dni + "'," + mail + "'," + premium + ");";
+        String consulta = "INSERT INTO usuario (nombreUsuario, dni, mail, premium) VALUES ('" + nombreUsuario + "','" + dni + "','" + mail + "'," + premium + ");";
 
         try {
 

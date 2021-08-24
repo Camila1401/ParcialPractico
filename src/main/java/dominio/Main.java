@@ -10,10 +10,10 @@ public class Main {
                         "lalaydidi@gmail.com",
                         true);
 
-        Copia harryPotter1 = new Copia(5, "Harry Potter 1", Genero.FANTASIA);
-        Copia harryPotter2 = new Copia(5, "Harry Potter 2", Genero.FANTASIA);
-        Copia harryPotter3 = new Copia(5, "Harry Potter 3", Genero.FANTASIA);
-        Copia naruto = new Copia(5, "Naruto - Arco Pain", Genero.MANGA);
+        Copia harryPotter1 = new Copia(1, "Harry Potter 1", Genero.FANTASIA);
+        Copia harryPotter2 = new Copia(2, "Harry Potter 2", Genero.FANTASIA);
+        Copia harryPotter3 = new Copia(1, "Harry Potter 3", Genero.FANTASIA);
+        Copia naruto = new Copia(1, "Naruto - Arco Pain", Genero.MANGA);
 
         List<Copia> copias = new ArrayList<>();
         copias.add(harryPotter1);
@@ -22,13 +22,9 @@ public class Main {
         copias.add(naruto);
 
         ControladorPrestables controladorPrestables = new ControladorPrestables();
-        controladorPrestables.generarPrestable(copias);
+        ControladorPrestamos controladorPrestamos = new ControladorPrestamos(controladorPrestables);
 
-
-        //PrestableSimple prestableSimple = new PrestableSimple(harryPotter);
-
-        //ControladorPrestamos controladorPrestamos = new ControladorPrestamos();
-        //controladorPrestamos.crearPrestamo(celes, prestableSimple);
+        controladorPrestamos.crearPrestamo(celes, copias);
 
     }
 

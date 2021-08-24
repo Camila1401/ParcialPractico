@@ -8,6 +8,13 @@ import static dominio.Genero.todos;
 public class ControladorPrestables {
 
     public Prestable generarPrestable(List<Copia> copias){
+
+        Prestado prestado = new Prestado();
+
+        //fijarse si la mierda esta alguno tiene estado q no sea en biblioteca
+
+        copias.forEach(copia -> copia.modificarEstado(prestado));
+
         if(copias.size() == 1){
             return new PrestableSimple(copias.get(0));
         } else {

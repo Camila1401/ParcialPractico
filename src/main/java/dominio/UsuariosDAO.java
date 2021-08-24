@@ -14,7 +14,7 @@ public class UsuariosDAO {
         Connection conn = null;
         try {
             String connectionUrl = "jdbc:mysql://localhost:3306/scoobydoo";
-            conn = DriverManager.getConnection(connectionUrl, "root", "camila");
+            conn = DriverManager.getConnection(connectionUrl, "root", "root");
 
             // Do something with the Connection
             System.out.println("Conexión realizada");

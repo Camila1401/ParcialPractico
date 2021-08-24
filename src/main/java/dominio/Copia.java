@@ -23,4 +23,8 @@ public class Copia extends Libro {
     public void modificarEstado(Estado estadoNuevo) {
         estado = estadoNuevo;
     }
+
+    public Estado estado() {
+        return estado;
+    }
 }
