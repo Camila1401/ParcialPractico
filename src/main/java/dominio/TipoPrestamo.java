@@ -14,4 +14,8 @@ public abstract class TipoPrestamo {
     public ControladorPrestamos controladorPrestamos() {
         return controladorPrestamos;
     }
+
+    public void setControladorPrestamos(ControladorPrestamos controladorPrestamos) {
+        this.controladorPrestamos = controladorPrestamos;
+    }
 }

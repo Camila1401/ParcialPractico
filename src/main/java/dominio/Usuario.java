@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Usuario {
     private int id;
-    private String nombreUsuario;
-    private int dni;
+    private final String nombreUsuario;
+    private final int dni;
     private String mail;
     private List<Prestamo> prestamos;
     private NotificadorMail notificadorMail;
@@ -77,11 +77,4 @@ public class Usuario {
         this.mail = mail;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
 }

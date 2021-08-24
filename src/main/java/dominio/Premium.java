@@ -4,8 +4,9 @@ import java.util.TimerTask;
 
 public class Premium extends TipoPrestamo{
 
-    Premium(Prestamo prestamo_) {
+    Premium(Prestamo prestamo_, ControladorPrestamos controladorPrestamos) {
         prestamo = prestamo_;
+        setControladorPrestamos(controladorPrestamos);
     }
 
     @Override
@@ -23,7 +24,7 @@ public class Premium extends TipoPrestamo{
                 } else if(prestamo.diasPrestado() == prestamo.dias()){
                     prestamo.notificarTiempoAgotado();
                 } else {
-                    prestamo.agregarDiaMulta(4);
+                    prestamo.agregarDiaMulta(3);
                 }
             }
         };
@@ -35,7 +36,7 @@ public class Premium extends TipoPrestamo{
             @Override
             public void run() {
                 if(prestamo.multa() != 0){
-                    prestamo.restarDiaMulta(2);
+                    prestamo.restarDiaMulta(1);
                 } else {
                     controladorPrestamos().eliminarPrestamo(prestamo);
                     prestamo.timer().cancel();

@@ -25,7 +25,7 @@ public class Prestamo {
         multa = 0;
         timer = new Timer();
         registradorOperaciones = new OperacionesNoSQL();
-        registradorOperaciones.registrar(new OpCreacionPrestamo(prestablePrestamo, usuario.nombreUsuario()));
+        registradorOperaciones.registrar(new OpCreacionPrestamo(prestablePrestamo, usuario.nombreUsuario(), this));
     }
 
     public void elegirTipo(TipoPrestamo tipo){
@@ -37,7 +37,7 @@ public class Prestamo {
     }
 
     public void notificarTiempoAgotado(){
-        registradorOperaciones.registrar(new OpMorosidad(diasPrestado));
+        registradorOperaciones.registrar(new OpMorosidad(diasPrestado, this));
         observadores.forEach(observador -> {
             try {
                 observador.notificarTiempoAgotado(usuario, prestable);

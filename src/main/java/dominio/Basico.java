@@ -4,8 +4,9 @@ import java.util.TimerTask;
 
 public class Basico extends TipoPrestamo {
 
-    Basico(Prestamo prestamo_){
+    Basico(Prestamo prestamo_, ControladorPrestamos controladorPrestamos){
         prestamo = prestamo_;
+        setControladorPrestamos(controladorPrestamos);
     }
 
     @Override
@@ -14,6 +15,7 @@ public class Basico extends TipoPrestamo {
 
             @Override
             public void run() {
+                System.out.println("paso un dia");
                 prestamo.sumarDiaPrestado();
                 if(prestamo.diasPrestado() < prestamo.dias()){
                     if(prestamo.dias() - prestamo.diasPrestado() == 3){

@@ -17,7 +17,7 @@ public class Paquete extends Prestable{
         for (Prestable prestable : prestables) {
             total += prestable.cantidadDias();
         }
-        return total; //horrible pero no me salia de otra forma u.u
+        return total;
     }
 
     @Override

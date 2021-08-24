@@ -8,10 +8,10 @@ public class Main {
         Usuario celes = new Usuario("celeslvp",
                         42201903,
                         "lalaydidi@gmail.com",
-                        true);
+                        false);
 
         Copia harryPotter1 = new Copia(1, "Harry Potter 1", Genero.FANTASIA);
-        Copia harryPotter2 = new Copia(2, "Harry Potter 2", Genero.FANTASIA);
+        Copia harryPotter2 = new Copia(1, "Harry Potter 2", Genero.FANTASIA);
         Copia harryPotter3 = new Copia(1, "Harry Potter 3", Genero.FANTASIA);
         Copia naruto = new Copia(1, "Naruto - Arco Pain", Genero.MANGA);
 

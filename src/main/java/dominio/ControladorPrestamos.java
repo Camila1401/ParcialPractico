@@ -23,9 +23,9 @@ public class ControladorPrestamos {
             Prestamo prestamo = new Prestamo(observadores, usuario, prestable, this);
 
             if(usuario.esUsuarioPremium()){
-                prestamo.elegirTipo(new Premium(prestamo));
+                prestamo.elegirTipo(new Premium(prestamo, this));
             } else {
-                prestamo.elegirTipo(new Basico(prestamo));
+                prestamo.elegirTipo(new Basico(prestamo, this));
             }
 
             prestamo.arrancarTimer();
