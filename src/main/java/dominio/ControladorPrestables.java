@@ -11,8 +11,6 @@ public class ControladorPrestables {
 
         Prestado prestado = new Prestado();
 
-        //fijarse si la mierda esta alguno tiene estado q no sea en biblioteca
-
         copias.forEach(copia -> copia.modificarEstado(prestado));
 
         if(copias.size() == 1){

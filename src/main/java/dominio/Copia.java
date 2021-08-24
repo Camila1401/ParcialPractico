@@ -1,7 +1,7 @@
 package dominio;
 
 public class Copia extends Libro {
-    //private int id;
+    private int id;
     private Estado estado;
     private int diasPrestables;
 

@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+        ControladorPrestables controladorPrestables = new ControladorPrestables();
+        ControladorPrestamos controladorPrestamos = new ControladorPrestamos(controladorPrestables);
+
         Usuario celes = new Usuario("celeslvp",
                         42201903,
                         "lalaydidi@gmail.com",
@@ -21,11 +25,7 @@ public class Main {
         copias.add(harryPotter3);
         copias.add(naruto);
 
-        ControladorPrestables controladorPrestables = new ControladorPrestables();
-        ControladorPrestamos controladorPrestamos = new ControladorPrestamos(controladorPrestables);
-
-        controladorPrestamos.crearPrestamo(celes, copias);
-
+        Prestamo prestamo = controladorPrestamos.crearPrestamo(celes, copias);
     }
 
 }

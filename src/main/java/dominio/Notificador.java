@@ -18,7 +18,7 @@ public class Notificador implements Observador {
 
     @Override
     public void notificarAvisoAnticipado(Usuario usuario, Prestable prestable) throws IOException {
-        MensajeTiempoAgotado mensaje = new MensajeTiempoAgotado();
+        MensajeAvisoPrevio mensaje = new MensajeAvisoPrevio();
         notificadorMail.enviar(mensaje.asunto, usuario.mail(), mensaje.cuerpo);
     }
 }

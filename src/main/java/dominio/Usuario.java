@@ -24,7 +24,7 @@ public class Usuario {
         notificadorMail = new NotificadorMail();
 
         UsuarioMapper oMapper = new UsuarioMapper(this.nombreUsuario, this.dni, this.mail, this.premium);
-        this.id = oMapper.insert();
+        //this.id = oMapper.insert();
     }
 
 

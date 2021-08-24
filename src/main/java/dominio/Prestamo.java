@@ -18,9 +18,9 @@ public class Prestamo {
     private TipoPrestamo tipoPrestamo;
     private Operaciones registradorOperaciones;
 
-    public Prestamo(Prestable prestablePrestamo, ControladorPrestamos controlador){
-        observadores = new ArrayList<>();
-        usuario = new Usuario();
+    public Prestamo(List<Observador> observadores_, Usuario usuario_, Prestable prestablePrestamo, ControladorPrestamos controlador){
+        observadores = observadores_;
+        usuario = usuario_;
         prestable = prestablePrestamo;
         dias = prestable.cantidadDias();
         diasPrestado = 0;
@@ -30,7 +30,7 @@ public class Prestamo {
         registradorOperaciones.registrar(new OpCreacionPrestamo(prestablePrestamo, usuario.nombreUsuario(), this));
 
         PrestamoMapper oMapper = new PrestamoMapper(this.id, this.dias, this.diasPrestado, this.multa);
-        this.id = oMapper.insert();
+        //this.id = oMapper.insert();
     }
 
 
