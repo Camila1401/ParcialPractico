@@ -5,23 +5,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
-    private final String nombreUsuario;
-    private final String nombre;
-    private final String dni;
+    private int id;
+    private String nombreUsuario;
+    private int dni;
     private String mail;
-    private final List<Prestamo> prestamos;
+    private List<Prestamo> prestamos;
     private NotificadorMail notificadorMail;
-    private final CalculadorMulta calculadorMulta;
+    private CalculadorMulta calculadorMulta;
     private boolean premium;
 
-    Usuario(String nombreUsuario_,String dni_, String mail_, CalculadorMulta calculador, boolean premium_){
+    Usuario(String nombreUsuario_,int dni_, String mail_, boolean premium_) {
         nombreUsuario = nombreUsuario_;
         dni = dni_;
         mail = mail_;
         prestamos = new ArrayList<>();
-        calculadorMulta = calculador;
+        calculadorMulta = new CalculadorMulta();
         premium = premium_;
         notificadorMail = new NotificadorMail();
+
+        UsuarioMapper oMapper = new UsuarioMapper(this.nombreUsuario, this.dni, this.mail, this.premium);
+        this.id = oMapper.insert();
+    }
+
+    public boolean baja() {
+        UsuarioDAO oUsuarioDAO = new UsuarioDAO();
+        return oUsuarioDAO.updateActivo(this.id);
+    }
+
+    public boolean bajaTotal() {
+        UsuarioDAO oUsuarioDAO = new UsuarioDAO();
+        return oUsuarioDAO.delete(this.id);
     }
 
     public void notificar(Mensaje mensaje) throws IOException {
@@ -50,5 +63,21 @@ public class Usuario {
 
     public String nombreUsuario() {
         return nombreUsuario;
+    }
+
+    public void setPremium(boolean premium) {
+        this.premium = premium;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 }

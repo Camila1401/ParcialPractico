@@ -1,15 +1,13 @@
 package dominio;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Usuario celes = new Usuario("celeslvp",
-                        "42201903",
+                        42201903,
                         "lalaydidi@gmail.com",
-                        new CalculadorMulta(),
                         true);
 
         Copia harryPotter1 = new Copia(5, "Harry Potter 1", Genero.FANTASIA);
