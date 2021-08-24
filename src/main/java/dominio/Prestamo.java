@@ -26,6 +26,19 @@ public class Prestamo {
         timer = new Timer();
         registradorOperaciones = new OperacionesNoSQL();
         registradorOperaciones.registrar(new OpCreacionPrestamo(prestablePrestamo, usuario.nombreUsuario(), this));
+
+        PrestamoMapper oMapper = new PrestamoMapper(this.nombreUsuario, this.dni, this.mail, this.premium);
+        this.id = oMapper.insert();
+    }
+
+    public boolean baja() {
+        UsuarioDAO oUsuarioDAO = new UsuarioDAO();
+        return oUsuarioDAO.updateActivo(this.id);
+    }
+
+    public boolean bajaTotal() {
+        UsuarioDAO oUsuarioDAO = new UsuarioDAO();
+        return oUsuarioDAO.delete(this.id);
     }
 
     public void elegirTipo(TipoPrestamo tipo){
