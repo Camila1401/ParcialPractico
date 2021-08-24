@@ -1,13 +1,15 @@
 package dominio;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
 public class Prestamo {
+    private int id = 0;
     private final List<Observador> observadores;
-    private final Usuario usuario;
+    private Usuario usuario;
     private final int dias;
     private int diasPrestado;
     private final Prestable prestable;
@@ -16,9 +18,9 @@ public class Prestamo {
     private TipoPrestamo tipoPrestamo;
     private Operaciones registradorOperaciones;
 
-    public Prestamo(List<Observador> observadoresPrestamo, Usuario usuarioPrestamo, Prestable prestablePrestamo, ControladorPrestamos controlador){
-        observadores = observadoresPrestamo;
-        usuario = usuarioPrestamo;
+    public Prestamo(Prestable prestablePrestamo, ControladorPrestamos controlador){
+        observadores = new ArrayList<>();
+        usuario = new Usuario();
         prestable = prestablePrestamo;
         dias = prestable.cantidadDias();
         diasPrestado = 0;
@@ -27,19 +29,11 @@ public class Prestamo {
         registradorOperaciones = new OperacionesNoSQL();
         registradorOperaciones.registrar(new OpCreacionPrestamo(prestablePrestamo, usuario.nombreUsuario(), this));
 
-        PrestamoMapper oMapper = new PrestamoMapper(this.nombreUsuario, this.dni, this.mail, this.premium);
+        PrestamoMapper oMapper = new PrestamoMapper(this.id, this.dias, this.diasPrestado, this.multa);
         this.id = oMapper.insert();
     }
 
-    public boolean baja() {
-        UsuarioDAO oUsuarioDAO = new UsuarioDAO();
-        return oUsuarioDAO.updateActivo(this.id);
-    }
 
-    public boolean bajaTotal() {
-        UsuarioDAO oUsuarioDAO = new UsuarioDAO();
-        return oUsuarioDAO.delete(this.id);
-    }
 
     public void elegirTipo(TipoPrestamo tipo){
         tipoPrestamo = tipo;

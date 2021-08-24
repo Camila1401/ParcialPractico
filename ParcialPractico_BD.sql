@@ -12,8 +12,8 @@ create table if not exists usuario(
 
 create table if not exists prestamo(
 	id int NOT NULL,
-    fecha date,
     dias int,
+    diasPrestado int,
     multa int,
     dniUsuario int NOT NULL,
     primary key (id),

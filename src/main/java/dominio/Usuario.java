@@ -14,7 +14,7 @@ public class Usuario {
     private CalculadorMulta calculadorMulta;
     private boolean premium;
 
-    Usuario(String nombreUsuario_,int dni_, String mail_, boolean premium_) {
+    public Usuario(String nombreUsuario_,int dni_, String mail_, boolean premium_) {
         nombreUsuario = nombreUsuario_;
         dni = dni_;
         mail = mail_;
@@ -26,6 +26,8 @@ public class Usuario {
         UsuarioMapper oMapper = new UsuarioMapper(this.nombreUsuario, this.dni, this.mail, this.premium);
         this.id = oMapper.insert();
     }
+
+
 
     public boolean baja() {
         UsuarioDAO oUsuarioDAO = new UsuarioDAO();
