@@ -37,3 +37,4 @@ create table if not exists copia(
     constraint idLibro foreign key (idLibro) REFERENCES libro (id)
 );
 
+--ALTER TABLE prestamo MODIFY (id) int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

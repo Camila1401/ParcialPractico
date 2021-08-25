@@ -26,9 +26,8 @@ public class PrestamoDAO {
         }
     }
 
-    public int insert(int id, int dias, int diasPrestado, int multa) {
-        String consulta = "INSERT INTO prestamo (id, dias, diasPrestado, multa) VALUES ('" + id + "','" + dias + "','" + diasPrestado + "'," + multa + ");";
-
+    public int insert(int id, int dias, int diasPrestado, int multa, int dniUsuario) {
+        String consulta = "INSERT prestamo (id, dias, diasPrestado, multa, dniUsuario) VALUES (" + id + "," + dias + ", "+ diasPrestado + "," + multa + "," + dniUsuario + ");";
         try {
 
             this.conn = newConnection();
@@ -50,7 +49,8 @@ public class PrestamoDAO {
         } catch (SQLException ex) {
 
             // handle any errors
-            System.out.println("Error en Insert");
+            ex.printStackTrace();
+            //System.out.println("Error en Insert");
             return 0;
         }
 

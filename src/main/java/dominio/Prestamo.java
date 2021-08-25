@@ -1,7 +1,6 @@
 package dominio;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -10,7 +9,7 @@ public class Prestamo {
     private int id = 0;
     private final List<Observador> observadores;
     private Usuario usuario;
-    private final int dias;
+    private int dias;
     private int diasPrestado;
     private final Prestable prestable;
     private int multa;
@@ -29,8 +28,8 @@ public class Prestamo {
         registradorOperaciones = new OperacionesNoSQL();
         registradorOperaciones.registrar(new OpCreacionPrestamo(prestablePrestamo, usuario.nombreUsuario(), this));
 
-        PrestamoMapper oMapper = new PrestamoMapper(this.id, this.dias, this.diasPrestado, this.multa);
-        //this.id = oMapper.insert();
+        PrestamoMapper pMapper = new PrestamoMapper(this.id, this.dias, this.diasPrestado, this.multa);
+        //this.id = pMapper.insert();
     }
 
 
